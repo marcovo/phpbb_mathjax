@@ -30,11 +30,11 @@ class acp_mathjax_module
 
 	function main($id, $mode)
 	{
-		global $db, $user, $auth, $template;
+		global $db, $user, $auth, $template, $request, $phpbb_log;
 		global $config, $phpbb_root_path, $phpbb_admin_path, $phpEx;
 
 		// Set up general vars
-		$action	= request_var('action', '');
+		$action	= $request->variable('action', '');
         $submit = isset($_POST['submit']) ? true : false;
 		
 		$user->add_lang_ext('marcovo/mathjax', 'info_acp_mathjax');
@@ -134,7 +134,7 @@ class acp_mathjax_module
 		// Override $this->new_config if the bbcode exists
 		if ($mode == 'bbcode' && ($action == 'modify' || $action =='delete'))
 		{
-			if (($bbcode_id = (int) request_var('bbcode_id', -1)) == -1)
+			if (($bbcode_id = (int) $request->variable('bbcode_id', -1)) == -1)
 			{
 				trigger_error('NO_BBCODE_ID', E_USER_WARNING);
 			}
@@ -177,7 +177,7 @@ class acp_mathjax_module
 			$this->new_config = $config;
 		}
 		
-		$cfg_array = (isset($_REQUEST['config'])) ? utf8_normalize_nfc(request_var('config', array('' => ''), true)) : $this->new_config;
+		$cfg_array = (isset($_REQUEST['config'])) ? utf8_normalize_nfc($request->variable('config', array('' => ''), true)) : $this->new_config;
 		$error = array();
 
 		// We validate the complete config if whished
@@ -225,7 +225,7 @@ class acp_mathjax_module
 
 			if ($submit && $mode != 'bbcode')
 			{
-				set_config($config_name, $config_value);
+				$config->set($config_name, $config_value);
 			}
 		}
 
@@ -237,7 +237,7 @@ class acp_mathjax_module
 				if (confirm_box(true))
 				{
 					$bbcode_helper->remove_bbcode($bbcode_id);
-					add_log('admin', 'LOG_BBCODE_DELETE', $this->new_config['bbcode_tag']);
+					$phpbb_log->add('admin', $user->data['user_id'], $user->ip, 'LOG_BBCODE_DELETE', false, array('bbcode_tag'=>$this->new_config['bbcode_tag']));
 					trigger_error($user->lang['BBCODE_DELETED'] . adm_back_link($this->u_action));
 				}
 				else
@@ -276,12 +276,12 @@ class acp_mathjax_module
 		{
 			if ($mode == 'bbcode')
 			{
-				add_log('admin', $log_action, $this->new_config['bbcode_tag']);
+				$phpbb_log->add('admin', $user->data['user_id'], $user->ip, $log_action, false, array('bbcode_tag'=>$this->new_config['bbcode_tag']));
 				trigger_error($user->lang[$notice_msg] . adm_back_link($this->u_action));
 			}
 			else
 			{
-				add_log('admin', 'LOG_CONFIG_MATHJAX');
+				$phpbb_log->add('admin', $user->data['user_id'], $user->ip, 'LOG_CONFIG_MATHJAX');
 				trigger_error($user->lang['CONFIG_UPDATED'] . adm_back_link($this->u_action));
 			}
 		}
