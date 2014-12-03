@@ -1,0 +1,9 @@
+services:
+    marcovo.mathjax.listener:
+        class: marcovo\mathjax\event\listener
+        arguments:
+            - @user
+            - @template
+            - @config
+        tags:
+            - { name: event.listener }

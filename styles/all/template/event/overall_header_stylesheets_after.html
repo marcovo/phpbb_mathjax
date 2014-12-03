@@ -1,0 +1,20 @@
+<!-- IF S_ENABLE_MATHJAX -->
+
+<script type="text/javascript" src="{T_MATHJAX_ASSETS_PATH}/javascript/phpbb2jax-combined-min.js"></script>
+<script type="text/x-mathjax-config">
+// <![CDATA[
+MathJax.Hub.PreProcess.disabled = true;
+MathJax.Hub.Config({messageStyle:"none"});
+ready(function() {phpbb2jax()});
+// ]]>
+</script>
+<script type="text/javascript" src="{U_MATHJAX}"></script>
+<!-- IF S_MATHJAX_HAS_FALLBACK -->
+<script type="text/javascript">
+// <![CDATA[
+	!window.MathJax && document.write('<script type="text\/javascript" src="{UA_MATHJAX_FALLBACK}"><\/script>');
+// ]]>
+</script>
+<!-- ENDIF -->
+
+<!-- ENDIF -->

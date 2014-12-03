@@ -1,0 +1,76 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<p>{L_TITLE_EXPLAIN}</p>
+
+<!-- IF S_ERROR -->
+	<div class="errorbox">
+		<h3>{L_WARNING}</h3>
+		<p>{ERROR_MSG}</p>
+	</div>
+<!-- ENDIF -->
+
+<form id="acp_mathjax" method="post" action="{U_ACTION}">
+<!-- IF not S_LIST_BBCODE -->
+	<!-- BEGIN options -->
+		<!-- IF options.S_LEGEND -->
+			<!-- IF not options.S_FIRST_ROW -->
+			</fieldset>
+			<!-- ENDIF -->
+		<fieldset>
+			<legend>{options.LEGEND}</legend>
+		<!-- ELSE -->
+
+		<dl>
+			<dt><label for="{options.KEY}">{options.TITLE}:</label><!-- IF options.S_EXPLAIN --><br /><span>{options.TITLE_EXPLAIN}</span><!-- ENDIF --></dt>
+			<dd>{options.CONTENT}</dd>
+		</dl>
+		<!-- ENDIF -->
+	<!-- END options -->
+<!-- ELSE -->
+	<fieldset class="tabulated">
+		<legend>{L_ACP_BBCODES}</legend>
+	
+		<table cellspacing="1" id="down">
+		<thead>
+		<tr>
+			<th>{L_BBCODE_TAG}</th>
+			<th>{L_ACTION}</th>
+		</tr>
+		</thead>
+		<tbody>
+	<!-- BEGIN bbcodes -->
+		<!-- IF bbcodes.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td style="text-align: center;">{bbcodes.BBCODE_TAG}</td>
+			<td style="text-align: center; width: 40px;"><a href="{bbcodes.U_EDIT}">{ICON_EDIT}</a> <a href="{bbcodes.U_DELETE}">{ICON_DELETE}</a></td>
+		</tr>
+	<!-- BEGINELSE -->
+		<tr class="row3">
+			<td>{L_ACP_NO_ITEMS}</td>
+			<td style="text-align: center; width: 40px;">{ICON_EDIT_DISABLED} {ICON_DELETE_DISABLED}</td>
+		</tr>
+	<!-- END bbcodes -->
+	</tbody>
+	</table>
+	</p>
+	</fieldset>
+<!-- ENDIF -->
+
+<!-- IF not S_LIST_BBCODE -->
+	<p class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	</p>
+	{S_FORM_TOKEN}
+	</fieldset>
+<!-- ELSE -->
+	<p class="quick">
+		<input class="button2" name="submit" type="submit" value="{L_ADD_BBCODE}" />
+	{S_FORM_TOKEN}
+	</p>
+<!-- ENDIF -->
+</form>
+<!-- INCLUDE overall_footer.html -->

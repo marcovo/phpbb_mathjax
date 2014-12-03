@@ -1,0 +1,32 @@
+{
+   "name": "marcovo/mathjax",
+   "type": "phpbb-extension",
+   "description": "phpBB extension that enables users to post beautiful math in LaTeX and MathML, rendered in all major browsers using the MathJax JavaScript Library.",
+   "homepage": "",
+   "version": "0.3.0",
+   "time": "2014-11-13",
+   "license": "GPL-2.0",
+   "authors": [
+      {
+         "name": "Marco van Oort",
+         "email": "marcovoort@gmail.com",
+         "homepage": "",
+         "role": "Developer"
+      },
+      {
+         "name": "sergio91pt",
+         "email": "-",
+         "homepage": "",
+         "role": "Original Developer for phpBB 3.0"
+      }
+   ],
+   "require": {
+      "php": ">=5.3.3"
+   },
+   "extra": {
+      "display-name": "MathJax phpBB Integration",
+      "soft-require": {
+         "phpbb/phpbb": ">=3.1.0,<3.2.*@dev"
+      }
+   }
+}
