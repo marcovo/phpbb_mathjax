@@ -49,8 +49,12 @@ class release_0_3_0_data extends \phpbb\db\migration\migration
 			),
 			
 			// Update outdated values
-			array('if', array( isset($this->config['mathjax_cdn_ssl']) && $this->config['mathjax_cdn_ssl'] == 'https://d3eoax9i5htok0.cloudfront.net/mathjax/latest',
-				array('config.update', 		 array('mathjax_cdn_ssl', 'https://c328740.ssl.cf1.rackcdn.com/mathjax/latest')),
+			array('if', array(
+					isset($this->config['mathjax_cdn_ssl']) && (
+						$this->config['mathjax_cdn_ssl'] == 'https://d3eoax9i5htok0.cloudfront.net/mathjax/latest' || 
+						$this->config['mathjax_cdn_ssl'] == 'https://c328740.ssl.cf1.rackcdn.com/mathjax/latest'
+					),
+				array('config.update', 		 array('mathjax_cdn_ssl', 'https://cdn.mathjax.org/mathjax/latest')),
 			),
 			
 			// Remove old ACP module if it exists

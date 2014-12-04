@@ -38,7 +38,7 @@ class release_0_3_0_data extends \phpbb\db\migration\migration
 				array('config.add', 		 array('mathjax_cdn', 'http://cdn.mathjax.org/mathjax/latest')),
 			),
 			array('if', array(!isset($this->config['mathjax_cdn_ssl']),
-				array('config.add', 		 array('mathjax_cdn_ssl', 'https://c328740.ssl.cf1.rackcdn.com/mathjax/latest')),
+				array('config.add', 		 array('mathjax_cdn_ssl', 'https://cdn.mathjax.org/mathjax/latest')),
 			),
 			array('if', array(!isset($this->config['mathjax_cdn_force_ssl']),
 				array('config.add', 		 array('mathjax_cdn_force_ssl', false)),
