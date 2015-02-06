@@ -22,24 +22,29 @@ class listener implements EventSubscriberInterface
 	protected $user;
 	protected $template;
 	protected $config;
+	protected $db;
+
+	protected $a_math_bbcode_ids = null;
+	protected $b_load_math = false;
 
 	/**
 	* Constructor
 	*
 	* @param \phpbb\controller\helper    $helper        Controller helper object
 	*/
-	public function __construct(\phpbb\user $user, \phpbb\template\template $template, \phpbb\config\config $config)
+	public function __construct(\phpbb\user $user, \phpbb\template\template $template, \phpbb\config\config $config, \phpbb\db\driver\factory $db)
 	{
 		$this->user = $user;
 		$this->template = $template;
 		$this->config = $config;
+		$this->db = $db;
 	}
 
 	static public function getSubscribedEvents()
 	{
 		return array(
 			'core.page_header_after'	=> 'page_header_after',
-			'test.bbcode_cache_init'	=> 'bbcode_cache_init',
+			'core.bbcode_cache_init_end'	=> 'bbcode_cache_init_end',
 		);
 	}
 
@@ -84,11 +89,43 @@ class listener implements EventSubscriberInterface
 		));
 	}
 	
-	public function bbcode_cache_init($event)
+	public function bbcode_cache_init_end($event)
 	{
-		if (!empty($this->config['mathjax_enable']) && !empty($event['rowset'][$event['bbcode_id']]['is_math'])) 
+		// If we know already that we have to load the math library js, we won't have to do the check again
+		if($this->b_load_math)
 		{
-			$this->template->assign_var('S_ENABLE_MATHJAX', true);
+			return;
+		}
+
+		// If mathjax isn't enabled, we don't have to check anything...
+		if(empty($this->config['mathjax_enable']))
+		{
+			return;
+		}
+		
+		// If not done already, load the id's of the bbcodes that have a math-flag
+		if($this->a_math_bbcode_ids === null)
+		{
+			$this->a_math_bbcode_ids = array();
+			$s_sql = 'SELECT bbcode_id FROM ' . BBCODES_TABLE . ' WHERE is_math = 1';
+			$qry_bbcodes = $this->db->sql_query($s_sql);
+			while($a_bbcode = $this->db->sql_fetchrow($qry_bbcodes))
+			{
+				$this->a_math_bbcode_ids[] = $a_bbcode['bbcode_id'];
+			}
+			$this->db->sql_freeresult($qry_bbcodes);
+		}
+		
+		// Check whether to load the math library js
+		$bbcode_cache = $event['bbcode_cache'];
+		foreach($this->a_math_bbcode_ids as $i_math_bbcode_id)
+		{
+			if(isset($bbcode_cache[$i_math_bbcode_id]) && $bbcode_cache[$i_math_bbcode_id] != false)
+			{
+				$this->b_load_math = true;
+				$this->template->assign_var('S_ENABLE_MATHJAX', true);
+				break;
+			}
 		}
 	}
 }
