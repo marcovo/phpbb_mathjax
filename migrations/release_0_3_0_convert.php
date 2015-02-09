@@ -29,24 +29,24 @@ class release_0_3_0_data extends \phpbb\db\migration\migration
 			// Remove old & bad version configs
 			array('if', array( isset($this->config['mathjax_mod_version_version']),
 				array('config.remove', 		 array('mathjax_mod_version_version')),
-			),
+			)),
 			array('if', array( isset($this->config['mathjax_mod_version']),
 				array('config.remove', 		 array('mathjax_mod_version')),
-			),
+			)),
 			
 			// Remove deprecated config values
 			array('if', array( isset($this->config['mathjax_enabled_post']),
 				array('config.remove', 		 array('mathjax_enabled_post')),
-			),
+			)),
 			array('if', array( isset($this->config['mathjax_enabled_pm']),
 				array('config.remove', 		 array('mathjax_enabled_pm')),
-			),
+			)),
 			array('if', array( isset($this->config['mathjax_enable_post']),
 				array('config.remove', 		 array('mathjax_enable_post')),
-			),
+			)),
 			array('if', array( isset($this->config['mathjax_enable_pm']),
 				array('config.remove', 		 array('mathjax_enable_pm')),
-			),
+			)),
 			
 			// Update outdated values
 			array('if', array(
@@ -55,7 +55,7 @@ class release_0_3_0_data extends \phpbb\db\migration\migration
 						$this->config['mathjax_cdn_ssl'] == 'https://c328740.ssl.cf1.rackcdn.com/mathjax/latest'
 					),
 				array('config.update', 		 array('mathjax_cdn_ssl', 'https://cdn.mathjax.org/mathjax/latest')),
-			),
+			)),
 			
 			// Remove old ACP module if it exists
 			array('if', array(
