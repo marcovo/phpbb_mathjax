@@ -9,7 +9,7 @@
 
 namespace marcovo\mathjax\migrations;
 
-class release_0_3_0_data extends \phpbb\db\migration\migration
+class release_0_3_0_convert extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
