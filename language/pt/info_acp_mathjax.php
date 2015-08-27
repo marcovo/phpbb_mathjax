@@ -78,7 +78,7 @@ $lang = array_merge($lang, array(
 	'MATHJAX_DYNAMIC_LOAD'			=> 'Carregar o MathJax dinamicamente',
 	'MATHJAX_DYNAMIC_LOAD_EXPLAIN'	=> 'O código JavaScript apenas é carregado pelo browser se houver BBCodes para serem processadas na página.',
 	'MATHJAX_CONFIG'				=> 'Ficheiro de configuração',
-	'MATHJAX_CONFIG_EXPLAIN'		=> 'O nome do ficheiro de configuração do MathJax e.g. <samp>TeX-AMS-MML_HTMLorMML</samp>. Valores e sintaxe válida são explicados na <a href="http://www.mathjax.org/docs/1.1/configuration.html#using-a-configuration-file">documentação</a>.',
+	'MATHJAX_CONFIG_EXPLAIN'		=> 'O nome do ficheiro de configuração do MathJax e.g. <samp>TeX-AMS-MML_HTMLorMML</samp>. Valores e sintaxe válida são explicados na <a href="http://docs.mathjax.org/en/latest/config-files.html">documentação</a>.',
 	
 // BBCode Settings
 	'MATHJAX_BBCODE_TYPE'				=> 'Tipo de Matemática',

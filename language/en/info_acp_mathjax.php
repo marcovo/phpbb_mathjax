@@ -78,7 +78,7 @@ $lang = array_merge($lang, array(
 	'MATHJAX_DYNAMIC_LOAD'			=> 'Dynamically load MathJax',
 	'MATHJAX_DYNAMIC_LOAD_EXPLAIN'	=> 'Only loads MathJax if theres a math bbcode to be processed.',
 	'MATHJAX_CONFIG'				=> 'Configuration File',
-	'MATHJAX_CONFIG_EXPLAIN'		=> 'MathJax configuration filename or url e.g. <samp>TeX-AMS-MML_HTMLorMML</samp>. Valid values are explained in the <a href="http://www.mathjax.org/docs/1.1/configuration.html#using-a-configuration-file">documentation</a>.',
+	'MATHJAX_CONFIG_EXPLAIN'		=> 'MathJax configuration filename or url e.g. <samp>TeX-AMS-MML_HTMLorMML</samp>. Valid values are explained in the <a href="http://docs.mathjax.org/en/latest/config-files.html">documentation</a>.',
 	
 // BBCode Settings
 	'MATHJAX_BBCODE_TYPE'				=> 'Math type',
