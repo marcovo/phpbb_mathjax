@@ -59,6 +59,11 @@ class release_0_3_0_convert extends \phpbb\db\migration\migration
 			
 			// Remove old ACP module if it exists
 			array('if', array(
+				array('module.exists', array('acp', 'ACP_MATHJAX_CAT', array('module_basename'	=> 'mathjax'))),
+				array('module.remove', array('acp', 'ACP_MATHJAX_CAT', array('module_basename'	=> 'mathjax'))),
+			)),
+
+			array('if', array(
 				array('module.exists', array('acp', 'ACP_CAT_DOT_MODS', 'ACP_MATHJAX_CAT')),
 				array('module.remove', array('acp', 'ACP_CAT_DOT_MODS', 'ACP_MATHJAX_CAT')),
 			)),
