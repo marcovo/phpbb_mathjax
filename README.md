@@ -15,11 +15,15 @@ phpBB extension that enables users to post beautiful math in LaTeX and MathML, r
 * Renders in native MathML, Web fonts and Image fonts depending on the browser capabilities.
 
 ### Requirements: ###
-* phpBB3 v3.1.0 or superior. For v3.0.*, see the [MathJax Mod GitHub page][7]
+* phpBB3 v3.1.3 or superior. For v3.0.*, see the [MathJax Mod GitHub page][7]
 * The [MathJax library][5] accessible from the forum web path or the ability to accept the [CDN TOS][6].
 
 ### Installation: ###
-* todo
+* Copy the extension code to the right subdirectory (/ext/marcovo/mathjax/)
+* Enable the extension in the ACP under Customise -> Extensions
+* In the ACP under Extensions -> Mathjax -> General Settings, do at least one of the following:
+  * (Simple) Enable the use of the MathJax CDN, thereby accepting the [CDN TOS][6], or
+  * (Requires FTP access) Download the [MathJax library][5] to your website, see also [the documentation][10] about this
 
 *****************
 
@@ -33,3 +37,4 @@ phpBB extension that enables users to post beautiful math in LaTeX and MathML, r
  [6]: http://www.mathjax.org/download/mathjax-cdn-terms-of-service/
  [7]: https://github.com/sergio91pt/MathJax-phpBB-Integration
  [9]: https://github.com/sergio91pt/MathJax-phpBB-Integration/raw/master/contrib/images/screenshot2.png
+ [10]: http://docs.mathjax.org/en/latest/start.html#installing-your-own-copy-of-mathjax
