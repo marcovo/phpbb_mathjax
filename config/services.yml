@@ -2,9 +2,9 @@ services:
     marcovo.mathjax.listener:
         class: marcovo\mathjax\event\listener
         arguments:
-            - @user
-            - @template
-            - @config
-            - @dbal.conn
+            - "@user"
+            - "@template"
+            - "@config"
+            - "@dbal.conn"
         tags:
             - { name: event.listener }
